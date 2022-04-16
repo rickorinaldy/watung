@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Warung Counter Bintang</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <div>
+        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#add">
+          Tambahkan
+        </button>
+
+        <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="addTitle">Ingin mengubah data dibawah?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <form method="POST">
+                <div class="modal-body">
+                  <label for="nama">Nama</label>
+                  <br>
+                  <input type="text" name="addnama"></input>
+                  <br>
+          
+                  <label for="harga">Harga</label>
+                  <br>
+                  <input type="text" name="addharga"></input>
+                  <br>
+    
+                  <label for="modal">Modal</label>
+                  <br>
+                  <input type="text" name="addmodal"></input>
+                  <br>
+    
+                  <label for="ukuran">Ukuran</label>
+                  <br>
+                  <input type="text" name="addukuran"></input>
+                  <br>
+    
+                  <br>
+                  <input type="submit" name="add" class="btn btn-primary" value="Add"></input>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn btn-info">Impor Data</button>
+      </div>
+      <table data-toggle="table" data-search="true" data-pagination="true">
+        <thead>
+          <tr>
+            <th>Item ID</th>
+            <th>Nama Barang</th>
+            <th>Harga</th>
+            <th>Edit</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%for i in range(0, ln)%}
+          <tr>
+            <td>{{ ids[i] }}</td>
+            <td>{{ nama[i] }}</td>
+            <td>{{ harga[i] }}</td>
+            <td>
+              <!-- Update PopUp -->
+              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#update">
+                Ubah di sini
+              </button>
+
+              <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="update" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="updateTitle">Ingin mengubah data dibawah?</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <form method="POST">
+                      <div class="modal-body">
+                        <label for="ids">Id</label>
+                        <br>
+                        <input type="text" name="ids" value={{ ids[i] }} readonly></input>
+                        <br>
+          
+                        <label for="nama">Nama</label>
+                        <br>
+                        <input type="text" name="nama" value={{ nama[i] }}></input>
+                        <br>
+                
+                        <label for="harga">Harga</label>
+                        <br>
+                        <input type="text" name="harga" value={{ harga[i] }}></input>
+                        <br>
+          
+                        <label for="modal">Modal</label>
+                        <br>
+                        <input type="text" name="modal" value={{ modal[i] }}></input>
+                        <br>
+          
+                        <label for="ukuran">Ukuran</label>
+                        <br>
+                        <input type="text" name="ukuran" value={{ ukuran[i] }}></input>
+                        <br>
+          
+                        <br>
+                        <input type="submit" name="update" class="btn btn-primary" value="Save changes"></input>
+                        <input type="submit" name="delete" class="btn btn-danger" value="Delete"></input>
+                        <!-- <button type="submit">Submit</button> -->
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          {%endfor%}
+        </tbody>
+      </table>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
+  </body>
+</html>
